@@ -17,14 +17,17 @@
         h1 a:hover { text-decoration: underline; }
         nav { margin: 1rem 0; }
         nav a { margin-right: 1rem; }
-        h2 { margin-top: 2rem; border-bottom: 1px solid #ddd; padding-bottom: 0.5rem; }
-        h3 { margin-top: 1.5rem; color: #444; }
-        table { width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.9rem; }
-        th, td { text-align: left; padding: 0.5rem; border-bottom: 1px solid #eee; }
+        details { margin-top: 2rem; }
+        summary { cursor: pointer; font-weight: 600; color: #444; }
+        summary:hover { color: #000; }
+        h3 { margin-top: 1.5rem; color: #444; font-size: 0.95rem; }
+        table { width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.85rem; }
+        th, td { text-align: left; padding: 0.4rem; border-bottom: 1px solid #eee; }
         th { font-weight: 600; }
         a { color: #0066cc; }
-        .date { color: #666; font-size: 0.9rem; }
-        ul { padding-left: 1.5rem; }
+        code { background: #f5f5f5; padding: 0.1rem 0.3rem; border-radius: 3px; font-size: 0.85rem; }
+        .date { color: #666; font-size: 0.85rem; margin-left: 0.5rem; font-weight: normal; }
+        ul { padding-left: 1.5rem; font-size: 0.9rem; }
         li { margin: 0.25rem 0; }
     </style>
 </head>
@@ -38,47 +41,53 @@
         <a href="https://plyr.fm" target="_blank">listen</a>
     </nav>
 
-    <h2>shipped this month</h2>
-    <p class="date">dec 2025 - jan 2026</p>
+    <details>
+        <summary>shipped this month<span class="date">dec 2025 - jan 2026</span></summary>
 
-    <h3>at protocol apps</h3>
-    <table>
-        <tr><th>project</th><th>what it is</th><th>link</th></tr>
-        <tr><td>plyr.fm</td><td>music streaming platform</td><td><a href="https://plyr.fm">plyr.fm</a></td></tr>
-        <tr><td>ooo.audio</td><td>audio social platform</td><td><a href="https://ooo.audio">ooo.audio</a></td></tr>
-        <tr><td>pollz</td><td>polls on atproto</td><td><a href="https://pollz.waow.tech">pollz.waow.tech</a></td></tr>
-        <tr><td>at-me</td><td>identity &amp; apps visualizer</td><td><a href="https://at-me.zzstoatzz.io">at-me.zzstoatzz.io</a></td></tr>
-        <tr><td>status</td><td>slack-like status updates</td><td><a href="https://status.zzstoatzz.io">status.zzstoatzz.io</a></td></tr>
-        <tr><td>find-bufo</td><td>semantic image search</td><td><a href="https://find-bufo.com">find-bufo.com</a></td></tr>
-        <tr><td>find-bufo/bot</td><td>zig bot for jetstream quote-posts</td><td><a href="https://bsky.app/profile/find-bufo.com">@find-bufo.com</a></td></tr>
-        <tr><td>leaflet-search</td><td>newsletter search engine</td><td><a href="https://leaflet-search.pages.dev">leaflet-search.pages.dev</a></td></tr>
-        <tr><td>bsky-alt-text</td><td>claude-powered alt text</td><td><a href="https://alt-text-generator.fly.dev">alt-text-generator.fly.dev</a></td></tr>
-        <tr><td>music-atmosphere-feed</td><td>music link feeds (zig)</td><td><a href="https://zig-bsky-feed.fly.dev">zig-bsky-feed.fly.dev</a></td></tr>
-    </table>
+        <h3>at protocol apps</h3>
+        <table>
+            <tr><th>project</th><th>what it is</th><th>link</th></tr>
+            <tr><td>plyr.fm</td><td>music streaming platform</td><td><a href="https://plyr.fm">plyr.fm</a></td></tr>
+            <tr><td>ooo.audio</td><td>audio social platform</td><td><a href="https://ooo.audio">ooo.audio</a></td></tr>
+            <tr><td>music-atmosphere-feed</td><td>bluesky feeds for music links</td><td><a href="https://zig-bsky-feed.fly.dev">zig-bsky-feed.fly.dev</a></td></tr>
+            <tr><td>leaflet-search</td><td>semantic + keyword search</td><td><a href="https://leaflet-search.pages.dev">leaflet-search.pages.dev</a></td></tr>
+            <tr><td>find-bufo</td><td>hybrid search for bufo zone</td><td><a href="https://find-bufo.com">find-bufo.com</a></td></tr>
+            <tr><td>find-bufo/bot</td><td>zig jetstream quote-poster</td><td><a href="https://bsky.app/profile/find-bufo.com">@find-bufo.com</a></td></tr>
+            <tr><td>at-me</td><td>identity &amp; apps visualizer</td><td><a href="https://at-me.zzstoatzz.io">at-me.zzstoatzz.io</a></td></tr>
+            <tr><td>status</td><td>slack-like status updates</td><td><a href="https://status.zzstoatzz.io">status.zzstoatzz.io</a></td></tr>
+            <tr><td>pollz</td><td>polls on atproto</td><td><a href="https://pollz.waow.tech">pollz.waow.tech</a></td></tr>
+            <tr><td>bsky-alt-text</td><td>claude-powered alt text</td><td><a href="https://alt-text-generator.fly.dev">alt-text-generator.fly.dev</a></td></tr>
+            <tr><td>follower-weight</td><td>bluesky follower analysis</td><td><a href="https://follower-weight.fly.dev">follower-weight.fly.dev</a></td></tr>
+        </table>
 
-    <h3>developer tools</h3>
-    <table>
-        <tr><th>project</th><th>what it is</th><th>link</th></tr>
-        <tr><td>pdsx</td><td>mcp server for atproto</td><td><a href="https://github.com/zzstoatzz/pdsx">github</a> &#183; <code>uvx pdsx</code></td></tr>
-        <tr><td>plyr-python-client</td><td>sdk + cli + mcp for plyr.fm</td><td><a href="https://github.com/zzstoatzz/plyr-python-client">github</a> &#183; <code>uvx plyrfm</code></td></tr>
-        <tr><td>pmgfal</td><td>pydantic model gen for lexicons</td><td><a href="https://github.com/zzstoatzz/pmgfal">github</a> &#183; <a href="https://pypi.org/project/pmgfal/">pypi</a></td></tr>
-        <tr><td>mdxify</td><td>api docs generator</td><td><a href="https://github.com/zzstoatzz/mdxify">github</a></td></tr>
-    </table>
+        <h3>developer tools</h3>
+        <table>
+            <tr><th>project</th><th>what it is</th><th>link</th></tr>
+            <tr><td>pdsx</td><td>mcp server for atproto</td><td><a href="https://github.com/zzstoatzz/pdsx">github</a> &#183; <code>uvx pdsx</code></td></tr>
+            <tr><td>plyr-python-client</td><td>sdk + cli + mcp for plyr.fm</td><td><a href="https://github.com/zzstoatzz/plyr-python-client">github</a> &#183; <code>uvx plyrfm</code></td></tr>
+            <tr><td>pmgfal</td><td>pydantic model gen for lexicons</td><td><a href="https://github.com/zzstoatzz/pmgfal">github</a> &#183; <a href="https://pypi.org/project/pmgfal/">pypi</a></td></tr>
+            <tr><td>mdxify</td><td>api docs generator</td><td><a href="https://github.com/zzstoatzz/mdxify">github</a></td></tr>
+            <tr><td>zql</td><td>comptime sql bindings for zig</td><td><a href="https://tangled.sh/@zzstoatzz.io/zql">tangled</a></td></tr>
+            <tr><td>hello-tinker</td><td>chat cli for tinker llms</td><td><a href="https://github.com/zzstoatzz/hello-tinker">github</a></td></tr>
+            <tr><td>atproto</td><td>oauth fixes for python sdk</td><td><a href="https://github.com/zzstoatzz/atproto">github</a></td></tr>
+        </table>
 
-    <h3>prefect (day job)</h3>
-    <table>
-        <tr><th>project</th><th>what it is</th><th>link</th></tr>
-        <tr><td>prefect-mcp-server</td><td>mcp server for prefect</td><td><a href="https://github.com/PrefectHQ/prefect-mcp-server">github</a></td></tr>
-        <tr><td>prefect core</td><td>docket migration, json schema, fixes</td><td><a href="https://github.com/PrefectHQ/prefect">github</a></td></tr>
-    </table>
+        <h3>prefect (day job)</h3>
+        <table>
+            <tr><th>project</th><th>what it is</th><th>link</th></tr>
+            <tr><td>prefect-mcp-server</td><td>mcp server + claude code plugin</td><td><a href="https://github.com/PrefectHQ/prefect-mcp-server">github</a></td></tr>
+            <tr><td>prefect core</td><td>docket migration, dagster guide</td><td><a href="https://github.com/PrefectHQ/prefect">github</a></td></tr>
+            <tr><td>marvin</td><td>slackbot memory with letta</td><td><a href="https://github.com/PrefectHQ/marvin">github</a></td></tr>
+        </table>
 
-    <h3>themes</h3>
-    <ul>
-        <li>mcp servers everywhere - pdsx, plyrfm-mcp, prefect-mcp-server all ship as claude code plugins</li>
-        <li>zig backends - music-atmosphere-feed, leaflet-search, pollz, find-bufo/bot</li>
-        <li>rust services - find-bufo search, pmgfal (pyo3), plyr.fm transcoder</li>
-        <li>shared audio lexicon - coordination between plyr.fm and ooo.audio</li>
-        <li>docket adoption - converted 7 prefect services to perpetual functions</li>
-    </ul>
+        <h3>themes</h3>
+        <ul>
+            <li>mcp servers everywhere - pdsx, plyrfm-mcp, prefect-mcp-server</li>
+            <li>zig backends - music-atmosphere-feed, leaflet-search, pollz, find-bufo/bot, zql</li>
+            <li>rust services - find-bufo search, pmgfal (pyo3), plyr.fm transcoder</li>
+            <li>shared audio lexicon - plyr.fm + ooo.audio coordination</li>
+            <li>docket adoption - converted 7 prefect services to perpetual functions</li>
+        </ul>
+    </details>
 </body>
 </html>
