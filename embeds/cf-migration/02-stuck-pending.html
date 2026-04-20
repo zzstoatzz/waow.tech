@@ -1,0 +1,483 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>the stuck-pending bug</title>
+<style>
+  :root {
+    --bg: #0a0a0a;
+    --panel: #111;
+    --panel-border: #222;
+    --border: #2a2a2a;
+    --dim: #4a4a4a;
+    --fg: #e0e0e0;
+    --muted: #888;
+    --faint: #555;
+    --accent: #44aa99;
+    --warn: #c79a3a;
+    --danger: #b55;
+    --moved: #4a4a4a;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    background: var(--bg);
+    color: var(--fg);
+    font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 13px;
+    line-height: 1.4;
+  }
+  body { margin: 0; padding: 0; }
+
+  .frame {
+    position: relative;
+    width: 100%;
+    max-width: 1040px;
+    aspect-ratio: 1040 / 580;
+    margin: 0 auto;
+    overflow: hidden;
+    border-radius: 10px;
+    background: var(--panel);
+    border: 1px solid var(--panel-border);
+    container-type: inline-size;
+  }
+
+  .stage {
+    position: absolute;
+    top: 0; left: 0;
+    width: 1040px;
+    height: 580px;
+    transform-origin: top left;
+    transform: scale(calc(100cqw / 1040px));
+    background: var(--panel);
+  }
+  .stage::before {
+    content: "";
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+  }
+
+  .title {
+    position: absolute;
+    top: 22px; left: 24px;
+    color: var(--muted);
+    font-size: 11px;
+    letter-spacing: 0.04em;
+  }
+  .title strong { color: var(--fg); font-weight: 500; }
+
+  .replay {
+    position: absolute;
+    top: 20px; right: 24px;
+    font-family: inherit;
+    font-size: 10px;
+    color: var(--faint);
+    background: transparent;
+    border: 1px solid var(--border);
+    padding: 4px 10px;
+    border-radius: 3px;
+    cursor: pointer;
+    letter-spacing: 0.05em;
+  }
+  .replay:hover { color: var(--fg); border-color: var(--muted); }
+
+  /* Two account panels */
+  .account {
+    position: absolute;
+    top: 76px;
+    width: 300px;
+    padding: 14px 16px 16px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: rgba(255,255,255,0.012);
+  }
+  .account.old { left: 36px; }
+  .account.new { right: 36px; }
+  .account .hdr {
+    display: flex; justify-content: space-between; align-items: baseline;
+    margin-bottom: 10px;
+  }
+  .account .label {
+    font-size: 10px; letter-spacing: 0.1em; color: var(--muted);
+  }
+  .account.old .label { color: #6b6b6b; }
+  .account.new .label { color: var(--accent); }
+  .account .sub { font-size: 10px; color: var(--faint); font-style: italic; }
+
+  /* zone chip with status badge */
+  .chip {
+    padding: 10px 12px;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    background: rgba(255,255,255,0.015);
+    display: flex; align-items: center; gap: 10px;
+    font-size: 12px;
+    transition: border-color 0.5s ease, background 0.5s ease, opacity 0.5s ease;
+  }
+  .chip .favicon {
+    width: 14px; height: 14px; border-radius: 2px; flex-shrink: 0;
+  }
+  .chip .name { flex: 1; color: var(--fg); }
+
+  .badge {
+    display: inline-flex; align-items: center; gap: 5px;
+    font-size: 9.5px; letter-spacing: 0.06em; text-transform: uppercase;
+    padding: 2px 8px;
+    border-radius: 3px;
+    border: 1px solid currentColor;
+    opacity: 0.9;
+    transition: color 0.5s ease, background 0.5s ease, opacity 0.5s ease;
+  }
+  .badge.active  { color: var(--accent); background: color-mix(in srgb, var(--accent) 8%, transparent); }
+  .badge.pending { color: var(--warn);   background: rgba(199,154,58,0.08); }
+  .badge.moved   { color: var(--moved);  background: rgba(255,255,255,0.02); }
+  .badge::before {
+    content: "";
+    width: 6px; height: 6px; border-radius: 50%;
+    background: currentColor;
+    flex-shrink: 0;
+  }
+  .badge.active::before  { animation: pulseDot 1.4s infinite; }
+  .badge.pending::before { animation: pulseDot 1.4s infinite; }
+  @keyframes pulseDot {
+    0%,100% { opacity: 1;   box-shadow: 0 0 0 0 currentColor; }
+    50%     { opacity: 0.6; box-shadow: 0 0 0 3px rgba(255,255,255,0); }
+  }
+
+  /* pause indicator when chip is paused */
+  .chip .paused-ind {
+    color: var(--warn);
+    font-size: 10px;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+  }
+  .chip.paused .paused-ind { opacity: 1; }
+  .chip.paused { border-color: rgba(199,154,58,0.35); }
+
+  /* moved state styling (OLD zone after reconciliation) */
+  .chip.moved {
+    opacity: 0.4;
+  }
+  .chip.moved .name { text-decoration: line-through; color: var(--faint); }
+  .chip.moved .favicon { filter: grayscale(1); }
+
+  /* registry block — horizontal band near center-bottom */
+  .registry {
+    position: absolute;
+    top: 280px; left: 0; right: 0;
+    display: flex; justify-content: center;
+    pointer-events: none;
+  }
+  .registry-inner {
+    display: flex; align-items: center; gap: 14px;
+    padding: 10px 16px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    background: rgba(0,0,0,0.6);
+    backdrop-filter: blur(3px);
+  }
+  .registry-label {
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+  }
+  .registry-nsvalue {
+    font-size: 11px;
+    color: var(--fg);
+    padding: 3px 8px;
+    border-radius: 3px;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid var(--border);
+    transition: color 0.6s ease, background 0.6s ease, border-color 0.6s ease;
+  }
+  .registry-nsvalue.to-old { color: #8a8a8a; }
+  .registry-nsvalue.to-new { color: var(--accent); border-color: color-mix(in srgb, var(--accent) 40%, transparent); background: color-mix(in srgb, var(--accent) 8%, transparent); }
+
+  /* arrow SVGs connecting registry to an account — animated position via stroke-dashoffset or opacity */
+  .arrow-group {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+
+  /* API command console */
+  .console {
+    position: absolute;
+    top: 380px; left: 50%;
+    transform: translateX(-50%);
+    width: 700px;
+    padding: 12px 16px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    background: rgba(0,0,0,0.7);
+    font-size: 12px;
+    line-height: 1.6;
+    color: var(--muted);
+    opacity: 0;
+    transition: opacity 0.6s ease;
+  }
+  .console.show { opacity: 1; }
+  .console .prompt { color: var(--accent); margin-right: 8px; }
+  .console .cmd { color: var(--fg); }
+  .console .cmd .flag { color: var(--warn); }
+  .console .cmd .str { color: #7eb8aa; }
+  .console .cursor {
+    display: inline-block; width: 7px; height: 14px;
+    background: var(--fg); vertical-align: middle;
+    animation: blink 1s steps(2) infinite;
+    margin-left: 2px;
+  }
+  @keyframes blink { 50% { opacity: 0; } }
+
+  /* caption strip */
+  .caption {
+    position: absolute;
+    bottom: 28px; left: 50%;
+    transform: translateX(-50%);
+    color: var(--muted);
+    font-size: 12px;
+    text-align: center;
+    max-width: 80%;
+    transition: opacity 0.5s ease, color 0.5s ease;
+  }
+  .caption strong { color: var(--fg); font-weight: 500; }
+  .caption em { color: var(--accent); font-style: normal; }
+
+  /* step indicator — small dots to show progress through phases */
+  .steps {
+    position: absolute;
+    top: 48px; left: 50%;
+    transform: translateX(-50%);
+    display: flex; gap: 10px;
+  }
+  .step-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--border);
+    transition: background 0.4s ease, transform 0.4s ease;
+  }
+  .step-dot.active { background: var(--accent); transform: scale(1.3); }
+</style>
+</head>
+<body>
+
+<div class="frame">
+<div class="stage" id="stage">
+  <div class="title"><strong>the stuck-pending bug</strong> · waow.tech migration</div>
+  <button class="replay" onclick="play()">↻ replay</button>
+  <div class="steps">
+    <div class="step-dot" data-step="0"></div>
+    <div class="step-dot" data-step="1"></div>
+    <div class="step-dot" data-step="2"></div>
+    <div class="step-dot" data-step="3"></div>
+  </div>
+
+  <!-- OLD account -->
+  <div class="account old">
+    <div class="hdr">
+      <div class="label">OLD</div>
+      <div class="sub">decommissioning</div>
+    </div>
+    <div class="chip" id="chipOld">
+      <img class="favicon" src="https://www.google.com/s2/favicons?domain=waow.tech&sz=32" alt="">
+      <span class="name">waow.tech</span>
+      <span class="badge active" id="badgeOld">active</span>
+      <span class="paused-ind">⏸</span>
+    </div>
+  </div>
+
+  <!-- NEW account -->
+  <div class="account new">
+    <div class="hdr">
+      <div class="label">NEW</div>
+      <div class="sub">personal</div>
+    </div>
+    <div class="chip" id="chipNew">
+      <img class="favicon" src="https://www.google.com/s2/favicons?domain=waow.tech&sz=32" alt="">
+      <span class="name">waow.tech</span>
+      <span class="badge pending" id="badgeNew">pending</span>
+    </div>
+  </div>
+
+  <!-- registry connector -->
+  <svg class="arrow-group" width="100%" height="100%" viewBox="0 0 1040 580" preserveAspectRatio="none">
+    <defs>
+      <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+        <path d="M0,0 L10,5 L0,10 z" fill="currentColor"/>
+      </marker>
+    </defs>
+    <!-- paths from registry up to each chip's bottom edge -->
+    <path id="arrowToOld" d="M 520 280 Q 380 225 186 178" fill="none"
+          stroke="#7a7a7a" stroke-width="2" stroke-dasharray="5 4"
+          marker-end="url(#arr)" opacity="1"/>
+    <path id="arrowToNew" d="M 520 280 Q 660 225 854 178" fill="none"
+          stroke="#44aa99" stroke-width="2" stroke-dasharray="5 4"
+          marker-end="url(#arr)" opacity="0"/>
+  </svg>
+
+  <div class="registry">
+    <div class="registry-inner">
+      <span class="registry-label">REGISTRY (.tech)</span>
+      <span class="registry-nsvalue to-old" id="regNS">ned/thea.ns.cloudflare.com</span>
+    </div>
+  </div>
+
+  <!-- fix console -->
+  <div class="console" id="console">
+    <span class="prompt">$</span><span class="cmd" id="cmdText"></span><span class="cursor" id="cursor"></span>
+  </div>
+
+  <div class="caption" id="caption"></div>
+</div>
+</div>
+
+<script>
+  // ——— scene timeline ———
+  // step 0 (0-4s):    setup — problem state visible
+  // step 1 (4-9s):    highlight problem — traffic hits OLD, docs route 404s
+  // step 2 (9-15s):   fire the fix — PATCH pause source
+  // step 3 (15-22s):  reconciliation — OLD flips to moved, registry arrow slides, NEW activates
+
+  const captions = [
+    "after Registrar move: <strong>both zones appear active.</strong> registry NS still pointing at OLD.",
+    "<strong>traffic still hits OLD.</strong> target stays <em>pending</em>. activation_check does nothing. we're stuck.",
+    "the fix: <em>pause the source zone</em>. one PATCH call triggers CF's reconciliation logic.",
+    "<strong>source → moved. registry NS → new pair. target → active.</strong> fully unstuck."
+  ];
+
+  const el = (id) => document.getElementById(id);
+  const stage = el('stage');
+  const caption = el('caption');
+  const console_ = el('console');
+  const cmdText = el('cmdText');
+  const cursor = el('cursor');
+  const arrowToOld = el('arrowToOld');
+  const arrowToNew = el('arrowToNew');
+  const regNS = el('regNS');
+  const chipOld = el('chipOld');
+  const chipNew = el('chipNew');
+  const badgeOld = el('badgeOld');
+  const badgeNew = el('badgeNew');
+  const dots = document.querySelectorAll('.step-dot');
+
+  const wait = (ms) => new Promise(r => setTimeout(r, ms));
+
+  function setStep(n) {
+    dots.forEach((d,i) => d.classList.toggle('active', i === n));
+    caption.innerHTML = captions[n];
+  }
+
+  async function typeCommand(text, perChar = 22) {
+    cmdText.innerHTML = '';
+    console_.classList.add('show');
+    for (let i = 0; i < text.length; i++) {
+      cmdText.innerHTML = text.slice(0, i+1);
+      await wait(perChar);
+    }
+  }
+
+  async function play() {
+    // reset
+    cmdText.innerHTML = '';
+    console_.classList.remove('show');
+    badgeOld.className = 'badge active';
+    badgeOld.textContent = 'active';
+    badgeNew.className = 'badge pending';
+    badgeNew.textContent = 'pending';
+    chipOld.classList.remove('paused', 'moved');
+    arrowToOld.style.opacity = '1';
+    arrowToNew.style.opacity = '0';
+    regNS.className = 'registry-nsvalue to-old';
+    regNS.textContent = 'ned/thea.ns.cloudflare.com';
+
+    // ——— step 0: setup ———
+    setStep(0);
+    await wait(4000);
+
+    // ——— step 1: the problem ———
+    setStep(1);
+    // subtle emphasis pulse on pending badge
+    badgeNew.style.transform = 'scale(1.08)';
+    await wait(500);
+    badgeNew.style.transform = 'scale(1)';
+    await wait(4500);
+
+    // ——— step 2: fire the fix ———
+    setStep(2);
+    await wait(400);
+    await typeCommand('PATCH /zones/{source_id} <span class="flag">-d</span> <span class="str">\'{"paused": true}\'</span>', 18);
+    await wait(1200);
+    // pause indicator on OLD
+    chipOld.classList.add('paused');
+    await wait(1000);
+    // hide console
+    console_.classList.remove('show');
+    await wait(800);
+
+    // ——— step 3: reconciliation ———
+    setStep(3);
+    await wait(500);
+    // OLD active → moved
+    badgeOld.className = 'badge moved';
+    badgeOld.textContent = 'moved';
+    chipOld.classList.remove('paused');
+    chipOld.classList.add('moved');
+    await wait(900);
+    // registry arrow slides from OLD to NEW
+    arrowToOld.style.transition = 'opacity 800ms ease';
+    arrowToNew.style.transition = 'opacity 800ms ease';
+    arrowToOld.style.opacity = '0';
+    arrowToNew.style.opacity = '1';
+    regNS.className = 'registry-nsvalue to-new';
+    regNS.textContent = 'dayana/jaime.ns.cloudflare.com';
+    await wait(1400);
+    // NEW pending → active
+    badgeNew.className = 'badge active';
+    badgeNew.textContent = 'active';
+    // landing pulse
+    chipNew.style.transition = 'border-color 0.4s, background 0.4s, transform 0.4s';
+    chipNew.style.borderColor = 'var(--accent)';
+    chipNew.style.background = 'color-mix(in srgb, var(--accent) 6%, transparent)';
+    chipNew.style.transform = 'scale(1.03)';
+    await wait(280);
+    chipNew.style.transform = 'scale(1)';
+    await wait(3500);
+  }
+
+  window.addEventListener('load', () => play());
+  stage.addEventListener('click', (e) => { if (e.target.tagName !== 'BUTTON') play(); });
+
+  // --- Leaflet iframe theme context ---
+  (function(){
+    var p = new URLSearchParams(location.search);
+    var bg = p.get('parts.page.embed.ctx.bgColor');
+    var primary = p.get('parts.page.embed.ctx.primaryColor');
+    if (!bg && !primary) return;
+    var root = document.documentElement.style;
+    function parseHex(h){ h = h.replace('#',''); return { r: parseInt(h.substr(0,2),16), g: parseInt(h.substr(2,2),16), b: parseInt(h.substr(4,2),16) }; }
+    function toHex(n){ n = Math.max(0, Math.min(255, Math.round(n))); return n.toString(16).padStart(2,'0'); }
+    function shift(h, delta){ var c = parseHex(h); return '#' + toHex(c.r+delta) + toHex(c.g+delta) + toHex(c.b+delta); }
+    function luminance(h){ var c = parseHex(h); return (c.r*0.299 + c.g*0.587 + c.b*0.114) / 255; }
+    if (bg) {
+      var isLight = luminance(bg) > 0.55;
+      root.setProperty('--bg',           '#' + bg);
+      root.setProperty('--panel',        shift(bg, isLight ? -8  :  8));
+      root.setProperty('--panel-border', shift(bg, isLight ? -28 : 24));
+      root.setProperty('--border',       shift(bg, isLight ? -42 : 34));
+      root.setProperty('--dim',          shift(bg, isLight ? -65 : 48));
+      if (isLight) {
+        root.setProperty('--fg',         shift(bg, -200));
+        root.setProperty('--muted',      shift(bg, -130));
+        root.setProperty('--faint',      shift(bg, -90));
+      }
+    }
+    if (primary) {
+      root.setProperty('--accent', '#' + primary);
+    }
+  })();
+</script>
+</body>
+</html>
