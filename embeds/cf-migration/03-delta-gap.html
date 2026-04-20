@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>the R2 delta gap race</title>
 <style>
   :root {
@@ -25,29 +26,27 @@
     font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
     font-size: 13px;
     line-height: 1.4;
+    height: 100%;
+    overflow: hidden;
   }
   body { margin: 0; padding: 0; }
 
   .frame {
     position: relative;
     width: 100%;
-    max-width: 1040px;
-    aspect-ratio: 1040 / 600;
-    margin: 0 auto;
+    height: 100%;
     overflow: hidden;
-    border-radius: 10px;
     background: var(--panel);
-    border: 1px solid var(--panel-border);
-    container-type: inline-size;
+    container-type: size;
   }
 
   .stage {
     position: absolute;
-    top: 0; left: 0;
+    top: 50%; left: 50%;
     width: 1040px;
     height: 600px;
-    transform-origin: top left;
-    transform: scale(calc(100cqw / 1040px));
+    transform-origin: center center;
+    transform: translate(-50%, -50%) scale(min(100cqw / 1040px, 100cqh / 600px));
     background: var(--panel);
   }
   .stage::before {
