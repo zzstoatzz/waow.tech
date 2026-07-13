@@ -25,6 +25,13 @@
         nav a { margin-right: 1rem; }
         footer { margin-top: 4rem; font-size: 0.65rem; color: #bbb; }
         footer a { color: #bbb; }
+        details.etc { margin-top: 3rem; font-size: 0.8rem; color: #999; }
+        details.etc summary { cursor: pointer; width: fit-content; }
+        details.etc summary:hover { color: #555; }
+        details.etc ul { list-style: none; padding-left: 0; margin: 0.75rem 0; }
+        details.etc li { margin: 0.15rem 0; }
+        details.etc a { color: #777; }
+        details.etc .group { margin-top: 0.75rem; color: #bbb; }
     </style>
 </head>
 <body>
@@ -43,6 +50,28 @@
     accessed with <a href="https://internethandle.org" target="_blank">one login</a>.</p>
 
     <p>or <a href="https://overreacted.io/open-social/#open-social" target="_blank">at least they could be!</a></p>
+
+    <details class="etc">
+        <summary>things built under this domain</summary>
+        <div class="group">to try</div>
+        <ul>
+            <li><a href="https://doodl.waow.tech" target="_blank">doodl</a> — draw something, save it, share it</li>
+            <li><a href="https://pollz.waow.tech" target="_blank">pollz</a> — create and vote on polls</li>
+            <li><a href="https://slides.waow.tech" target="_blank">slides</a> — create and present slides</li>
+            <li><a href="https://rally.waow.tech" target="_blank">rally</a> — shared tallies</li>
+            <li><a href="https://typeahead.waow.tech" target="_blank">typeahead</a> — community actor search</li>
+            <li><a href="https://ken.waow.tech" target="_blank">ken</a> — fuzzy find any record in your repo</li>
+            <li><a href="https://pub-search.waow.tech" target="_blank">pub search</a> — search leaflet publications</li>
+            <li><a href="https://coral.waow.tech" target="_blank">coral</a> — real-time entity visualization</li>
+        </ul>
+        <div class="group">infrastructure</div>
+        <ul>
+            <li><a href="https://relay.waow.tech" target="_blank">relay</a> — an atproto relay</li>
+            <li><a href="https://zlay.waow.tech" target="_blank">zlay</a> — a relay written in zig</li>
+            <li><a href="https://jetstream.waow.tech" target="_blank">jetstream</a> — a jetstream instance</li>
+        </ul>
+        <p>all of these read from and write to data you own.</p>
+    </details>
 
     <footer>not affiliated with AT Protocol in any official capacity. made by <a href="https://bsky.app/profile/zzstoatzz.io" target="_blank">@zzstoatzz.io</a></footer>
 </body>
