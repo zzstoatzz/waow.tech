@@ -1,0 +1,57 @@
+{
+  "doodl": {
+    "page": "https://doodl.waow.tech/",
+    "icon": "https://doodl.waow.tech/favicon.png?v=2",
+    "file": "assets/icons/doodl.png"
+  },
+  "chimes": {
+    "page": "https://chimes.waow.tech/",
+    "icon": "https://chimes.waow.tech/favicon.svg?v=3",
+    "file": "assets/icons/chimes.svg"
+  },
+  "pollz": {
+    "page": "https://pollz.waow.tech/",
+    "icon": "https://pollz.waow.tech/favicon.svg?v=3",
+    "file": "assets/icons/pollz.svg"
+  },
+  "slides": {
+    "page": "https://slides.waow.tech/",
+    "icon": "data:image/svg+xml,%3csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2032%2032'%20width='32'%20height='32'%3e%3c!--%20background%20slide%20--%3e%3crect%20x='6'%20y='4'%20width='20'%20height='15'%20rx='2'%20fill='%234f46e5'%20opacity='0.5'/%3e%3c!--%20foreground%20slide%20--%3e%3crect%20x='6'%20y='13'%20width='20'%20height='15'%20rx='2'%20fill='%236366f1'/%3e%3c!--%20play%20icon%20hint%20--%3e%3cpolygon%20points='13,18%2013,24%2019,21'%20fill='white'%20opacity='0.9'/%3e%3c/svg%3e",
+    "file": "assets/icons/slides.svg"
+  },
+  "pub-search": {
+    "page": "https://pub-search.waow.tech/",
+    "icon": "https://pub-search.waow.tech/favicon.svg",
+    "file": "assets/icons/pub-search.svg"
+  },
+  "pensieve": {
+    "page": "https://pensieve.waow.tech/",
+    "icon": "https://pensieve.waow.tech/favicon.svg?v=2",
+    "file": "assets/icons/pensieve.svg"
+  },
+  "coral": {
+    "page": "https://coral.waow.tech/",
+    "icon": "https://coral.waow.tech/favicon.svg",
+    "file": "assets/icons/coral.svg"
+  },
+  "typeahead": {
+    "page": "https://typeahead.waow.tech/",
+    "icon": "data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22%3E%3Crect x=%223%22 y=%227%22 width=%2214%22 height=%225%22 rx=%221%22 fill=%22%23288b79%22/%3E%3Cpath d=%22M5 17h10M5 23h7%22 stroke=%22%2374b9aa%22 stroke-width=%223%22 stroke-linecap=%22round%22/%3E%3Cpath d=%22M21 4h7m-3.5 0v24M21 28h7%22 fill=%22none%22 stroke=%22%232c8e78%22 stroke-width=%222.5%22 stroke-linecap=%22round%22/%3E%3C/svg%3E",
+    "file": "assets/icons/typeahead.svg"
+  },
+  "bsky38": {
+    "page": "https://bsky38.waow.tech/",
+    "icon": "https://bsky38.waow.tech/assets/favicon-BbNX6HDx.svg",
+    "file": "assets/icons/bsky38.svg"
+  },
+  "mcp": {
+    "page": "https://mcp.waow.tech/",
+    "icon": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2032%2032%22%3E%3Crect%20width%3D%2232%22%20height%3D%2232%22%20rx%3D%227%22%20fill%3D%22%2314283e%22%2F%3E%3Cg%20fill%3D%22none%22%20stroke%3D%22%2382b9ed%22%20stroke-width%3D%221.4%22%3E%3Ccircle%20cx%3D%2216%22%20cy%3D%2216%22%20r%3D%2211.5%22%2F%3E%3Cellipse%20cx%3D%2216%22%20cy%3D%2216%22%20rx%3D%225.5%22%20ry%3D%2211.5%22%2F%3E%3Cpath%20d%3D%22M5%2012h22M5%2020h22%22%2F%3E%3C%2Fg%3E%3Ccircle%20cx%3D%2211%22%20cy%3D%2212%22%20r%3D%223%22%20fill%3D%22%23f1d08c%22%20stroke%3D%22%2314283e%22%20stroke-width%3D%221.5%22%2F%3E%3Ccircle%20cx%3D%2221%22%20cy%3D%2220%22%20r%3D%223%22%20fill%3D%22%23f1d08c%22%20stroke%3D%22%2314283e%22%20stroke-width%3D%221.5%22%2F%3E%3C%2Fsvg%3E",
+    "file": "assets/icons/mcp.svg"
+  },
+  "brand": {
+    "page": "https://brand.waow.tech/",
+    "icon": "data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22%3E%3Cpath d=%22M3 3h18l8 8v18H3z%22 fill=%22%2329262e%22 stroke=%22%23918a98%22 stroke-width=%221%22/%3E%3Ccircle cx=%2223%22 cy=%229%22 r=%222%22 fill=%22%23fff%22/%3E%3Cpath d=%22M10 7v17h6a6 6 0 0 0 0-12h-3V7zm3 8h3a3 3 0 0 1 0 6h-3z%22 fill=%22%23fff%22/%3E%3C/svg%3E",
+    "file": "assets/icons/brand.svg"
+  }
+}
