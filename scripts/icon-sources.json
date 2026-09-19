@@ -1,4 +1,9 @@
 {
+  "afterhours": {
+    "page": "https://afterhours.waow.tech/",
+    "icon": "https://afterhours.waow.tech/favicon.svg",
+    "file": "assets/icons/afterhours.svg"
+  },
   "doodl": {
     "page": "https://doodl.waow.tech/",
     "icon": "https://doodl.waow.tech/favicon.png?v=2",

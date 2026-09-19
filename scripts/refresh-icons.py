@@ -7,7 +7,7 @@ import subprocess
 from urllib.parse import unquote_to_bytes, urljoin
 
 ROOT = Path(__file__).resolve().parents[1]
-HOSTS = ('doodl', 'chimes', 'pollz', 'slides', 'pub-search', 'pensieve',
+HOSTS = ('afterhours', 'doodl', 'chimes', 'pollz', 'slides', 'pub-search', 'pensieve',
          'coral', 'typeahead', 'bsky38', 'mcp', 'brand')
 
 class Icons(HTMLParser):

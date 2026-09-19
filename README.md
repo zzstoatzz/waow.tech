@@ -11,11 +11,17 @@ The headline is “things to do with our data”: emphasize possibilities and ag
 not abstract ownership slogans. The room CTA links to the existing after hours
 experience. See [the room handoff](docs/after-hours-handoff.md).
 
+The manifesto and directory share a linked identity and explicit navigation. The
+manifesto explains the idea; `/go/` is the only project inventory. The directory
+uses subtle press feedback inspired by the CRT demo, with reduced-motion support
+and no JavaScript or graphics runtime. Infrastructure links are compact visible
+rows, and after hours uses its own declared favicon.
+
 Edit project links and descriptions directly in `go/index.html`; styling lives in
 `style.css`. The account avatar is stored locally in `assets/avatar.jpg`. Project icons are
 unaltered snapshots of each live homepage’s declared favicon, stored in
 `assets/icons/`. Refresh them with `python3 scripts/refresh-icons.py`; source URLs
-are recorded in `scripts/icon-sources.json`. Brand now declares its identity-tag favicon. Never substitute invented symbols for project branding.
+are recorded in `scripts/icon-sources.json`. Brand uses its selected bracketed-b favicon. Never substitute invented symbols for project branding.
 
 ```sh
 python3 scripts/build.py
@@ -52,7 +58,7 @@ Read public `app.blento.card` and `app.blento.section` records directly from
 `https://pds.zat.dev` for `did:plc:siv7zbedip4vcet4v67piibr` (waow.tech).
 The 13 cards were last updated 2026-05-11. All their destinations are retained:
 the old apex card becomes the manifesto link; ken, sonify, and the two Grafana
-links sit in an expandable section. The newer additions are doodl, chimes,
+links sit in the compact “behind the apps” section. The newer additions are doodl, chimes,
 pensieve, MCP Atlas, brand, and the race to 38. Descriptions were checked against
 the local project READMEs. No Blento records were modified.
 
