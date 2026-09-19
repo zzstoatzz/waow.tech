@@ -11,10 +11,10 @@ The headline is “things to do with our data”: emphasize possibilities and ag
 not abstract ownership slogans. The room CTA links to the existing after hours
 experience. See [the room handoff](docs/after-hours-handoff.md).
 
-The manifesto and directory share a linked identity and explicit navigation. The
-manifesto explains the idea; `/go/` is the only project inventory. The directory
-uses subtle press feedback inspired by the CRT demo, with reduced-motion support
-and no JavaScript or graphics runtime. Infrastructure links are compact visible
+The homepage and directory share a linked identity and explicit navigation. The
+homepage explains the idea; `/go/` is the only project inventory. The directory
+uses plain links, source favicons, and restrained hover/focus feedback,
+with no JavaScript or graphics runtime. Infrastructure links are compact visible
 rows, and after hours uses its own declared favicon.
 
 Edit project links and descriptions directly in `go/index.html`; styling lives in
