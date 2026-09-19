@@ -14,8 +14,9 @@ experience. See [the room handoff](docs/after-hours-handoff.md).
 The homepage and directory share a linked identity and explicit navigation. The
 homepage explains the idea; `/go/` is the only project inventory. The directory
 uses plain links, source favicons, and restrained hover/focus feedback,
-with no JavaScript or graphics runtime. Infrastructure links are compact visible
-rows, and after hours uses its own declared favicon.
+with no JavaScript or graphics runtime. Service status and infrastructure link to Evergreen’s public inventory; after
+hours uses its own declared favicon. The homepage reads in one column at every
+width, with the closing lines directly beneath the opening list.
 
 Edit project links and descriptions directly in `go/index.html`; styling lives in
 `style.css`. The account avatar is stored locally in `assets/avatar.jpg`. Project icons are
@@ -56,9 +57,9 @@ would therefore depend on client behavior; it cannot be guaranteed across forks.
 
 Read public `app.blento.card` and `app.blento.section` records directly from
 `https://pds.zat.dev` for `did:plc:siv7zbedip4vcet4v67piibr` (waow.tech).
-The 13 cards were last updated 2026-05-11. All their destinations are retained:
-the old apex card becomes the manifesto link; ken, sonify, and the two Grafana
-links sit in the compact “behind the apps” section. The newer additions are doodl, chimes,
+The 13 cards were last updated 2026-05-11. The initial migration retained all destinations. The later review removed the
+duplicated infrastructure list in favor of Evergreen’s public inventory at
+https://nate.tngl.io/. The newer additions are doodl, chimes,
 pensieve, MCP Atlas, brand, and the race to 38. Descriptions were checked against
 the local project READMEs. No Blento records were modified.
 
