@@ -79,3 +79,7 @@ at `/go`. `/about/` redirects to `/`. Verified both public pages and the redirec
 The waow.tech `app.bsky.actor.profile/self` description now contains
 `https://waow.tech/go`; the avatar and other record fields were preserved using
 an optimistic CID check. No Blento records or DNS settings changed.
+
+Project descriptions use short activity phrases; each remains visible on mobile.
+The on-demand browser experiment and its verification limits live in
+[docs/app-preview](docs/app-preview/README.md), outside the public build.
