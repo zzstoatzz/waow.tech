@@ -1,8 +1,8 @@
 # waow.tech
 
 A small, static directory of experiments on AT Protocol. The project index is at
-`/go`; the original manifesto stays at `/`. `/about/` redirects to `/`. The base pages need no JavaScript, dependencies, external fonts, or requests to
-Blento. The homepage adds a small optional script for on-demand screenshots.
+`/go`; the original manifesto stays at `/`. `/about/` redirects to `/`. The pages need no JavaScript, dependencies, external fonts, or requests to
+Blento.
 
 ## Edit and preview
 
@@ -81,7 +81,5 @@ The waow.tech `app.bsky.actor.profile/self` description now contains
 an optimistic CID check. No Blento records or DNS settings changed.
 
 Project descriptions use short activity phrases; each remains visible on mobile.
-The iframe experiment is retired. Homepage preview buttons show three dated,
-locally hosted screenshots; images load only on selection. Original text links
-keep their normal behavior. Capture sources and refresh guidance are in
-[docs/app-preview](docs/app-preview/README.md).
+Both preview experiments are retired. The homepage uses ordinary direct links;
+the project directory keeps its concise descriptions.
