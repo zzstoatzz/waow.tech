@@ -63,3 +63,12 @@ Full destination functionality remains unverified.
 
 Wisp supports static files and custom domains: <https://docs.wisp.place/>.
 Hosting migration is a separate choice from this content/layout refresh.
+
+
+## published 2026-09-19
+
+Cloudflare Pages deployment `87b8b2f4` serves the manifesto at `/` and directory
+at `/go`. `/about/` redirects to `/`. Verified both public pages and the redirect.
+The waow.tech `app.bsky.actor.profile/self` description now contains
+`https://waow.tech/go`; the avatar and other record fields were preserved using
+an optimistic CID check. No Blento records or DNS settings changed.

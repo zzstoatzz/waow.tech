@@ -23,7 +23,7 @@ immediately, without a flash or delayed visual response.
 
 Inspect `chimes/src/scene.ts`, `src/main.ts`, `src/audio.ts`, and
 `public/chime-processor.js` in the sibling checkout. Start from commit `1561562`
-for the rebuilt instrument, then include the current activity indicator work.
+for the rebuilt instrument, then include `30c535b` for the activity indicator and stream measurement.
 The worklet's bounded voice pool, pitch calibration, and limiter are important;
 preserve its audio safety tests when reusing or porting the sound.
 
