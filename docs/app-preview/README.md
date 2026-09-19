@@ -1,23 +1,19 @@
-# on-demand app preview
+# app previews
 
-Prototype: https://app-preview.waow-tech-evb.pages.dev/
-Local: /docs/app-preview/ (serve repository root). Not in the production build.
+The live iframe experiment was retired on 2026-09-19. The production homepage
+now uses three locally hosted screenshots selected explicitly by the visitor.
+No external app runs inside waow.tech.
 
-One selected iframe, created on click and removed on close or replacement.
-No frames or external app requests on initial load. Direct links work without
-JavaScript and modified clicks still open the original destination. The
-external-open control remains available. On narrow screens the preview stacks.
+Captures: 785 × 589, September 19, 2026, original browser JPEG output.
+- photos: https://grain.social/ — public feed, signed out
+- code: https://tangled.org/zzstoatzz.io/waow.tech — public repository, signed out
+- websites: https://wisp.place/ — public landing page, signed out
 
-2026-09-19 checks: bsky.app sends X-Frame-Options SAMEORIGIN; wisp.place
-sends DENY and frame-ancestors none. These receive an explicit external-open
-message. GET checks found no equivalent header on the other seven destinations.
-This is not proof that those apps function when framed.
+No preview image is requested before selection. Cycling changes one image source;
+closing removes it. Text links remain ordinary links, including without JavaScript.
+Refresh captures manually when the featured UI changes; these are dated screenshots,
+not a live status feed. Capture only public content without personal account controls.
 
-In-app browser testing kept leaflet, grain, and plyr frames on about:blank,
-with and without sandbox, both localhost and the secure preview deployment.
-No browser error was surfaced. Cause unresolved. Do not promote this prototype
-until actual rendering, mobile interaction and third-party load costs are verified.
-
-The deployed prototype uses the sandbox. No runtime or preview CSS is shipped
-on the production homepage. The iframe idea remains separate from any future
-JEV organization of activities and applications.
+The previous iframe prototype encountered blank frames in the in-app browser.
+That cause was not established; header checks separately confirmed that bsky.app
+and wisp.place explicitly restrict framing. No bypass was attempted.

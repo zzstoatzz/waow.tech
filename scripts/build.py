@@ -7,7 +7,7 @@ dest = root / 'dist'
 if dest.exists():
     shutil.rmtree(dest)
 dest.mkdir()
-for name in ('index.html', 'style.css', '404.html', '_redirects'):
+for name in ('index.html', 'style.css', 'preview.js', '404.html', '_redirects'):
     shutil.copy2(root / name, dest / name)
 for name in ('go', 'assets', 'embeds'):
     shutil.copytree(root / name, dest / name, dirs_exist_ok=True)

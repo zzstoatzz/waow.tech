@@ -1,8 +1,8 @@
 # waow.tech
 
 A small, static directory of experiments on AT Protocol. The project index is at
-`/go`; the original manifesto stays at `/`. `/about/` redirects to `/`. No JavaScript, dependencies, external
-fonts, or requests to Blento are needed to render the page.
+`/go`; the original manifesto stays at `/`. `/about/` redirects to `/`. The base pages need no JavaScript, dependencies, external fonts, or requests to
+Blento. The homepage adds a small optional script for on-demand screenshots.
 
 ## Edit and preview
 
@@ -14,7 +14,7 @@ experience. See [the room handoff](docs/after-hours-handoff.md).
 The homepage and directory share a linked identity and explicit navigation. The
 homepage explains the idea; `/go/` is the only project inventory. The directory
 uses plain links, source favicons, and restrained hover/focus feedback,
-with no JavaScript or graphics runtime. Service status and infrastructure link to Evergreen’s public inventory; after
+with no JavaScript or graphics runtime on the directory. Service status and infrastructure link to Evergreen’s public inventory; after
 hours uses its own declared favicon. The homepage reads in one column at every
 width, with the closing lines directly beneath the opening list.
 
@@ -81,5 +81,7 @@ The waow.tech `app.bsky.actor.profile/self` description now contains
 an optimistic CID check. No Blento records or DNS settings changed.
 
 Project descriptions use short activity phrases; each remains visible on mobile.
-The on-demand browser experiment and its verification limits live in
-[docs/app-preview](docs/app-preview/README.md), outside the public build.
+The iframe experiment is retired. Homepage preview buttons show three dated,
+locally hosted screenshots; images load only on selection. Original text links
+keep their normal behavior. Capture sources and refresh guidance are in
+[docs/app-preview](docs/app-preview/README.md).
