@@ -9,10 +9,15 @@
     "icon": "https://doodl.waow.tech/favicon.png?v=2",
     "file": "assets/icons/doodl.png"
   },
-  "chimes": {
-    "page": "https://chimes.waow.tech/",
-    "icon": "https://chimes.waow.tech/favicon.svg?v=3",
-    "file": "assets/icons/chimes.svg"
+  "rally": {
+    "page": "https://rally.waow.tech/",
+    "icon": "https://rally.waow.tech/icon.svg",
+    "file": "assets/icons/rally.svg"
+  },
+  "strata": {
+    "page": "https://stream.waow.tech/strata/",
+    "icon": "data:,",
+    "note": "Empty favicon declared; render without an icon."
   },
   "pollz": {
     "page": "https://pollz.waow.tech/",

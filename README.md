@@ -83,3 +83,11 @@ an optimistic CID check. No Blento records or DNS settings changed.
 Project descriptions use short activity phrases; each remains visible on mobile.
 Both preview experiments are retired. The homepage uses ordinary direct links;
 the project directory keeps its concise descriptions.
+
+## directory curation, 2026-09-19
+
+Chimes is temporarily unlisted pending further work; its deployment remains online.
+Rally (shared scores) and Strata (stream’s visual archive explorer) bring the grid
+to twelve projects. Their public pages were checked; authenticated Rally writes
+were not exercised. Noti remains invite-only and is not featured. Strata declares
+an empty favicon, so its icon space stays empty rather than substituting artwork.

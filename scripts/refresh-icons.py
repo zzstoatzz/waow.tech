@@ -7,7 +7,7 @@ import subprocess
 from urllib.parse import unquote_to_bytes, urljoin
 
 ROOT = Path(__file__).resolve().parents[1]
-HOSTS = ('afterhours', 'doodl', 'chimes', 'pollz', 'slides', 'pub-search', 'pensieve',
+HOSTS = ('afterhours', 'doodl', 'rally', 'strata', 'pollz', 'slides', 'pub-search', 'pensieve',
          'coral', 'typeahead', 'bsky38', 'mcp', 'brand')
 
 class Icons(HTMLParser):
@@ -28,7 +28,7 @@ def fetch(url):
 
 sources = {}
 for host in HOSTS:
-    page = f'https://{host}.waow.tech/'
+    page = 'https://stream.waow.tech/strata/' if host == 'strata' else f'https://{host}.waow.tech/'
     parser = Icons()
     parser.feed(fetch(page).decode())
     if not parser.hrefs:
@@ -43,6 +43,9 @@ for host in HOSTS:
     else:
         source = urljoin(page, href)
         data = fetch(source)
+    if not data:
+        sources[host] = {'page': page, 'icon': source, 'note': 'Empty favicon declared; render without an icon.'}
+        continue
     if b'<svg' in data[:1024]:
         extension = 'svg'
     elif data.startswith(b'\x89PNG\r\n\x1a\n'):
