@@ -98,3 +98,20 @@ used for the listing. Slides was subsequently unlisted at Nate’s request; the 
 The shared header uses the avatar and “waow”, without navigation tabs. The homepage
 ends with a lowercase globe/explore link to `/go/`; the header links home. Checked
 at 390 × 740 and 1280 × 900, with the existing avatar retained as the favicon.
+
+## accessibility and minimalism
+
+Keep these pages as native HTML and one shared stylesheet: no client JavaScript,
+web fonts, or UI dependencies. Native system sans-serif fonts, conventional weights,
+and rem text sizes follow each device and the reader’s preferred font size.
+Secondary text is at least 0.875rem; project columns collapse instead of shrinking it.
+
+The 2026-09-21 pass checked keyboard skip-to-content and visible link focus, native
+heading/list structure, 320px reflow, desktop layout, and 200% root text sizing
+combined with WCAG text-spacing overrides. No horizontal overflow was found on
+either page. Text contrast on white: primary 15.10:1, secondary 5.17:1, accent 6.57:1.
+Forced-colors focus uses the system highlight color; reduced-motion handling remains.
+This is a targeted browser pass, not a full screen-reader or cross-device certification.
+
+References: [reflow](https://www.w3.org/WAI/WCAG22/Understanding/reflow.html) and
+[text spacing](https://www.w3.org/WAI/WCAG22/Understanding/text-spacing.html).
