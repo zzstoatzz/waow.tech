@@ -63,5 +63,10 @@
     "page": "https://brand.waow.tech/",
     "icon": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2032%2032%22%3E%3Crect%20width%3D%2232%22%20height%3D%2232%22%20rx%3D%226%22%20fill%3D%22%23101012%22%2F%3E%3Cpath%20d%3D%22M9%205H5v22h4M23%205h4v22h-4%22%20fill%3D%22none%22%20stroke%3D%22%23999%22%20stroke-width%3D%222%22%2F%3E%3Cpath%20fill%3D%22%23eee%22%20fill-rule%3D%22evenodd%22%20d%3D%22M11%207h3v8q1-2%204-2%205%200%205%207t-5%206q-3%200-4-2v2h-3zm3%2013q0%203%203%203t3-3-3-3-3%203z%22%2F%3E%3C%2Fsvg%3E",
     "file": "assets/icons/brand.svg"
+  },
+  "character": {
+    "page": "https://character.waow.tech/",
+    "icon": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath fill='%237564b9' d='M14 2h4v5h4v6h4v5H6v-5h4V7h4zM10 22h12v8H10z'/%3E%3Cpath fill='%23efc4a2' d='M11 17h10v7H11z'/%3E%3C/svg%3E",
+    "file": "assets/icons/character.svg"
   }
 }
