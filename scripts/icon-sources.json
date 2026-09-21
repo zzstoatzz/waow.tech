@@ -16,8 +16,8 @@
   },
   "strata": {
     "page": "https://stream.waow.tech/strata/",
-    "icon": "data:,",
-    "note": "Empty favicon declared; render without an icon."
+    "icon": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2032%2032%22%3E%3Crect%20width%3D%2232%22%20height%3D%2232%22%20rx%3D%227%22%20fill%3D%22%23050607%22%2F%3E%3Ccircle%20cx%3D%2212%22%20cy%3D%2217%22%20r%3D%226%22%20fill%3D%22%239acbdb%22%2F%3E%3Ccircle%20cx%3D%2222.5%22%20cy%3D%2212%22%20r%3D%224.5%22%20fill%3D%22%23b4a2ea%22%2F%3E%3Ccircle%20cx%3D%2223%22%20cy%3D%2223%22%20r%3D%224%22%20fill%3D%22%23e8b7d8%22%2F%3E%3Ccircle%20cx%3D%2212%22%20cy%3D%226.5%22%20r%3D%223%22%20fill%3D%22%23b8dca1%22%2F%3E%3Ccircle%20cx%3D%227%22%20cy%3D%2226%22%20r%3D%222.5%22%20fill%3D%22%23efce83%22%2F%3E%3C%2Fsvg%3E",
+    "file": "assets/icons/strata.svg"
   },
   "pollz": {
     "page": "https://pollz.waow.tech/",
