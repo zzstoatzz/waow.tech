@@ -94,3 +94,7 @@ were not exercised. Noti remains invite-only and is not featured. Strata’s sph
 On 2026-09-21, added Character at Nate’s request: reimagine an RPG sprite with Jev
 from public AT Protocol records. Its live description and declared favicon were
 used for the listing. Slides was subsequently unlisted at Nate’s request; the directory contains twelve projects.
+
+The shared header uses the avatar and “waow”, without navigation tabs. The homepage
+ends with a lowercase globe/explore link to `/go/`; the header links home. Checked
+at 390 × 740 and 1280 × 900, with the existing avatar retained as the favicon.
