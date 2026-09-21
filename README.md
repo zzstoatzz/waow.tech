@@ -94,4 +94,4 @@ an empty favicon, so its icon space stays empty rather than substituting artwork
 
 On 2026-09-21, added Character at Nate’s request: reimagine an RPG sprite with Jev
 from public AT Protocol records. Its live description and declared favicon were
-used for the listing. The directory now contains thirteen projects.
+used for the listing. Slides was subsequently unlisted at Nate’s request; the directory contains twelve projects.
