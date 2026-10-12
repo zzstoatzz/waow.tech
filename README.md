@@ -115,3 +115,14 @@ This is a targeted browser pass, not a full screen-reader or cross-device certif
 
 References: [reflow](https://www.w3.org/WAI/WCAG22/Understanding/reflow.html) and
 [text spacing](https://www.w3.org/WAI/WCAG22/Understanding/text-spacing.html).
+
+## square peg pictures
+
+`/square-peg/` lists the `tech.waow.squarepeg.figure` records in the waow.tech
+repo on `pds.zat.dev`: pictures from the inscribed square work, each labelled
+proved, sketched, numerical, or retracted. The page keeps the no-JavaScript rule:
+`python3 scripts/build_square_peg.py` reads the records and writes
+`square-peg/index.html` with the text baked in, and the images load from the
+PDS blob endpoint. Re-run it, then build and publish, after figures change. The
+records are written from the square-peg repo (`scripts/publish_figures.py`). The
+page is not linked from `/go/`.

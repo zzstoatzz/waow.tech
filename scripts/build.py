@@ -9,6 +9,6 @@ if dest.exists():
 dest.mkdir()
 for name in ('index.html', 'style.css', '404.html', '_redirects'):
     shutil.copy2(root / name, dest / name)
-for name in ('go', 'assets', 'embeds'):
+for name in ('go', 'assets', 'embeds', 'square-peg'):
     shutil.copytree(root / name, dest / name, dirs_exist_ok=True)
 print(f'Staged public files in {dest}')
