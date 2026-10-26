@@ -1,32 +1,28 @@
 # waow.tech
 
-A small, static directory of experiments on AT Protocol. The project index is at
+A small, static introduction to experiments on AT Protocol. The project atlas link is at
 `/go`; the original manifesto stays at `/`. `/about/` redirects to `/`. The pages need no JavaScript, dependencies, external fonts, or requests to
 Blento.
 
 ## Edit and preview
 
-The entrance shows a compact grid with real favicons and names always visible.
-The headline is “things to do with our data”: emphasize possibilities and agency,
-not abstract ownership slogans. The room CTA links to the existing after hours
-experience. See [the room handoff](docs/after-hours-handoff.md).
+The headline is “things to do with our data”. The manifesto stays at `/`;
+`/go/` links prominently to Evergreen's semantic project atlas at
+https://nate.tngl.io/atlas.html, which replaces the manually maintained app list.
+The atlas groups projects by meaning and sizes their favicon nodes by recorded
+monthly infrastructure cost. Its accessible search also exposes every project.
+The after hours room CTA and Evergreen status link remain separate destinations.
+See [the room handoff](docs/after-hours-handoff.md).
 
-The homepage and directory share a linked identity and explicit navigation. The
-homepage explains the idea; `/go/` is the only project inventory. The directory
-uses plain links, source favicons, and restrained hover/focus feedback,
-with no JavaScript or graphics runtime on the directory. Service status and infrastructure link to Evergreen’s public inventory; after
-hours uses its own declared favicon. The homepage reads in one column at every
-width, with the closing lines directly beneath the opening list.
-
-Edit project links and descriptions directly in `go/index.html`; styling lives in
-`style.css`. The account avatar is stored locally in `assets/avatar.jpg`. Project icons are
+Edit the atlas link in `go/index.html`; styling lives in `style.css`.
+The account avatar is stored locally in `assets/avatar.jpg`. Project icons are
 unaltered snapshots of each live homepage’s declared favicon, stored in
-`assets/icons/`. Refresh them with `python3 scripts/refresh-icons.py`; source URLs
+`assets/icons/`. Refresh them with `uv run scripts/refresh-icons.py`; source URLs
 are recorded in `scripts/icon-sources.json`. Brand uses its selected bracketed-b favicon. Never substitute invented symbols for project branding.
 
 ```sh
-python3 scripts/build.py
-python3 -m http.server 8765 --bind 127.0.0.1 --directory dist
+uv run scripts/build.py
+uv run --no-project python -m http.server 8765 --bind 127.0.0.1 --directory dist
 ```
 
 The build script stages an explicit allowlist of public assets. Publish `dist/`,
