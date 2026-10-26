@@ -8,7 +8,7 @@ Blento.
 
 The headline is “things to do with our data”. The manifesto stays at `/`;
 `/go/` links prominently to Evergreen's semantic project atlas at
-https://nate.tngl.io/atlas.html, which replaces the manually maintained app list.
+https://nate.tngl.io/atlas/, which replaces the manually maintained app list.
 The atlas groups projects by meaning and sizes their favicon nodes by recorded
 monthly infrastructure cost. Its accessible search also exposes every project.
 The after hours room CTA and Evergreen status link remain separate destinations.
