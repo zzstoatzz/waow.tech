@@ -1,20 +1,20 @@
 # waow.tech
 
-A small, static introduction to experiments on AT Protocol. The project atlas link is at
+A small, static introduction to experiments on AT Protocol. The project timeline link is at
 `/go`; the original manifesto stays at `/`. `/about/` redirects to `/`. The pages need no JavaScript, dependencies, external fonts, or requests to
 Blento.
 
 ## Edit and preview
 
 The headline is “things to do with our data”. The manifesto stays at `/`;
-`/go/` links prominently to Evergreen's semantic project atlas at
-https://nate.tngl.io/atlas/, which replaces the manually maintained app list.
-The atlas groups projects by meaning and sizes their favicon nodes by recorded
-monthly infrastructure cost. Its accessible search also exposes every project.
+`/go/` links prominently to Evergreen's project timeline at
+https://nate.tngl.io/timeline/, which replaces the manually maintained app list.
+The timeline draws every project's commit history, which can be swiped through
+or replayed. Its accessible list also exposes every project.
 The after hours room CTA and Evergreen status link remain separate destinations.
 See [the room handoff](docs/after-hours-handoff.md).
 
-Edit the atlas link in `go/index.html`; styling lives in `style.css`.
+Edit the timeline link in `go/index.html`; styling lives in `style.css`.
 The account avatar is stored locally in `assets/avatar.jpg`. Project icons are
 unaltered snapshots of each live homepage’s declared favicon, stored in
 `assets/icons/`. Refresh them with `uv run scripts/refresh-icons.py`; source URLs
